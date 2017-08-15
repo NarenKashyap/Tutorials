@@ -1,0 +1,24 @@
+version: 1.0.{build}
+skip_branch_with_pr: true
+shallow_clone: true
+build: off
+deploy:
+- provider: AzureWebJob
+  appservice_environment: false
+  website: tutorials
+  username: $tutorials
+  password:
+    secure: A/UhEX8XJ4Gg10PFpjBTuA==
+  artifact: tutorials
+  job_name: tutorials
+  manually_triggered: true
+  job_schedule: day
+  on:
+    branch: https://github.com/NarenKashyap/Tutorials.git
+- provider: WebDeploy
+  server: tutorials.com
+  website: www.tutorials.com
+  username: tutorials
+  password:
+    secure: A/UhEX8XJ4Gg10PFpjBTuA==
+  artifact: tutorials
